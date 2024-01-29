@@ -2,7 +2,6 @@ package com.example.finalproject.person.controller;
 
 import com.example.finalproject.person.dto.UserRegistrationDto;
 import com.example.finalproject.person.service.UserService;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,10 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/registration")
-@AllArgsConstructor
 public class UserRegistrationController {
+    private UserService userService;
 
-    private final UserService userService;
+    public UserRegistrationController(UserService userService) {
+        super();
+        this.userService = userService;
+    }
 
     @ModelAttribute("userP")
     public UserRegistrationDto userRegistrationDto() {
@@ -29,7 +31,6 @@ public class UserRegistrationController {
     @PostMapping
     public String registerUserAccount(@ModelAttribute("userP") UserRegistrationDto registrationDto) {
         userService.save(registrationDto);
-        // Можно выводить уведомление, а можно сразу редиректить на страничку логина - в большинстве сайтов и сервисов сделано именно так (хотя это уже придирки)
         return "redirect:/registration?success";
     }
 }
