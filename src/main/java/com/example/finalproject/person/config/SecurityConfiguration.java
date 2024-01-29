@@ -34,14 +34,25 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers("/registration**").permitAll()
-                                .requestMatchers("/js/**").permitAll()
-                                .requestMatchers("/css/**").permitAll()
-                                .requestMatchers("/img/**").permitAll()
+
+                        authorize
+                                .requestMatchers("/employees/**").hasAnyRole("USER")
+                                .requestMatchers("/login/**").permitAll()
+                                .requestMatchers("/registration**").permitAll()
+                                .anyRequest().authenticated()
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
-                                .permitAll()
+=======
+                      //  authorize.requestMatchers("/registration**").permitAll()
+                      //          .requestMatchers("/js/**").permitAll()
+                       //         .requestMatchers("/css/**").permitAll()
+                        //        .requestMatchers("/img/**").permitAll()
+            //    ).formLogin(
+                     //   form -> form
+                           //     .loginPage("/login")
+                               // .permitAll()
+
                 ).logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
