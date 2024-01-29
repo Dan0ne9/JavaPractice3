@@ -13,11 +13,16 @@ import java.util.List;
 
 
 @Controller
+@AllArgsConstructor
+@RequestMapping("/employees")
 public class EmployeeController {
 
-    private EmployeeService employeeService;
+    /**
+     * Также было некорректное внедрение зависимостей
+     */
+    private final EmployeeService employeeService;
 
-    @GetMapping("/")
+    @GetMapping("/all")
     public String viewHomePage(Model model) {
         return findPaginated(1, "firstName", "asc", model);
     }
@@ -32,7 +37,7 @@ public class EmployeeController {
     @PostMapping("/saveEmployee")
     public String saveEmployee(@ModelAttribute("employee") Employee employee) {
         employeeService.savePerson(employee);
-        return "redirect:/";
+        return "redirect:/home/all";
     }
 
     @GetMapping("/showFormForUpdate/{id}")
@@ -45,7 +50,7 @@ public class EmployeeController {
     @GetMapping("/deleteEmployee/{id}")
     public String deletePerson(@PathVariable(value = "id") Long id) {
         this.employeeService.deleteUserById(id);
-        return "redirect:/";
+        return "redirect:/home/all";
     }
 
     @GetMapping("/page/{pageNo}")
