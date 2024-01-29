@@ -16,11 +16,14 @@ public class EmployeeController {
 
     private EmployeeService employeeService;
 
+
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
-
     @GetMapping("/employees/all")
+
+   // @GetMapping("/")
+
     public String viewHomePage(Model model) {
         return findPaginated(1, "firstName", "asc", model);
     }
@@ -35,7 +38,11 @@ public class EmployeeController {
     @PostMapping("/saveEmployee")
     public String saveEmployee(@ModelAttribute("employee") Employee employee) {
         employeeService.savePerson(employee);
+
         return "redirect:/employees/all";
+=======
+        //return "redirect:/";
+
     }
 
     @GetMapping("/showFormForUpdate/{id}")
@@ -48,7 +55,11 @@ public class EmployeeController {
     @GetMapping("/deleteEmployee/{id}")
     public String deletePerson(@PathVariable(value = "id") Long id) {
         this.employeeService.deleteUserById(id);
+
         return "redirect:/employees/all";
+=======
+        //return "redirect:/";
+
     }
 
     @GetMapping("/page/{pageNo}")
