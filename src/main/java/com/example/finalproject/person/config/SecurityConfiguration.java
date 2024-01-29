@@ -39,17 +39,14 @@ public class SecurityConfiguration {
                 //Вообще лучше (даже обязательно, потому что таков порядок фильтрации) начинать с перечисления тех эндпойнтов которые ЗАКРЫТЫ (т.е доступны только авторизованым пользователя или пользователям с определенной ролью)
                 .authorizeHttpRequests((authorize) ->
                         authorize
-                                .requestMatchers("/employees/**").authenticated()
+                                .requestMatchers("/employees/**").hasAnyRole("USER")
+                                .requestMatchers("/login/**").permitAll()
                                 .requestMatchers("/registration**").permitAll()
-                                .requestMatchers("/js/**").permitAll()
-                                .requestMatchers("/css/**").permitAll()
-                                .requestMatchers("/img/**").permitAll()
+                                .anyRequest().authenticated()
 
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
-                                .defaultSuccessUrl("/employees/all")
-                                .permitAll()
                 ).logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
