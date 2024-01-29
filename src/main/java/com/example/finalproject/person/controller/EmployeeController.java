@@ -37,7 +37,7 @@ public class EmployeeController {
     @PostMapping("/saveEmployee")
     public String saveEmployee(@ModelAttribute("employee") Employee employee) {
         employeeService.savePerson(employee);
-        return "redirect:/home/all";
+        return "redirect:/employees/all";
     }
 
     @GetMapping("/showFormForUpdate/{id}")
@@ -50,7 +50,7 @@ public class EmployeeController {
     @GetMapping("/deleteEmployee/{id}")
     public String deletePerson(@PathVariable(value = "id") Long id) {
         this.employeeService.deleteUserById(id);
-        return "redirect:/home/all";
+        return "redirect:/employees/all";
     }
 
     @GetMapping("/page/{pageNo}")
