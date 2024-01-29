@@ -4,6 +4,7 @@ import com.example.finalproject.person.dto.UserRegistrationDto;
 import com.example.finalproject.person.model.Role;
 import com.example.finalproject.person.model.User;
 import com.example.finalproject.person.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,23 +12,17 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService{
+
     private final UserRepository userRepository;
-
-
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder){
-        super();
-        this.userRepository=userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Override
     public User save(UserRegistrationDto registrationDto) {

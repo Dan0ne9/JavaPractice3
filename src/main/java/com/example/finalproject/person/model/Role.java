@@ -17,6 +17,8 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    //Вот для таких вещей лучше делать Enumeration в котором будут перечислены ВСЕ доступные роли в нашем приложении
     private String name;
 
     public Role(String name) {
