@@ -3,7 +3,6 @@ package com.example.finalproject.person.controller;
 import com.example.finalproject.person.exceptions.UserNotFoundException;
 import com.example.finalproject.person.model.Employee;
 import com.example.finalproject.person.service.EmployeeService;
-import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,16 +12,15 @@ import java.util.List;
 
 
 @Controller
-@AllArgsConstructor
-@RequestMapping("/employees")
 public class EmployeeController {
 
-    /**
-     * Также было некорректное внедрение зависимостей
-     */
-    private final EmployeeService employeeService;
+    private EmployeeService employeeService;
 
-    @GetMapping("/all")
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
+
+    @GetMapping("/employees/all")
     public String viewHomePage(Model model) {
         return findPaginated(1, "firstName", "asc", model);
     }
