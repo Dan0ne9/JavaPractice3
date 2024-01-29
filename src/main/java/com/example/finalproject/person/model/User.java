@@ -14,11 +14,11 @@ import java.util.Collection;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "userP", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id = null;
     @Column(name = "first_name")
     private String firstName;
 
@@ -40,7 +40,6 @@ public class User {
     private Collection<Role> roles;
 
     public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
-        super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

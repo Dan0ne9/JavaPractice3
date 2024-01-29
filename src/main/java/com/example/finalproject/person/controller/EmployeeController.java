@@ -3,6 +3,7 @@ package com.example.finalproject.person.controller;
 import com.example.finalproject.person.exceptions.UserNotFoundException;
 import com.example.finalproject.person.model.Employee;
 import com.example.finalproject.person.service.EmployeeService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,19 +12,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
+@AllArgsConstructor
+@RequestMapping("/employees")
 @Controller
 public class EmployeeController {
 
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
 
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
-    @GetMapping("/employees/all")
-
-   // @GetMapping("/")
-
+    @GetMapping("/all")
     public String viewHomePage(Model model) {
         return findPaginated(1, "firstName", "asc", model);
     }
@@ -40,8 +37,6 @@ public class EmployeeController {
         employeeService.savePerson(employee);
 
         return "redirect:/employees/all";
-=======
-        //return "redirect:/";
 
     }
 
@@ -57,16 +52,10 @@ public class EmployeeController {
         this.employeeService.deleteUserById(id);
 
         return "redirect:/employees/all";
-=======
-        //return "redirect:/";
-
     }
 
     @GetMapping("/page/{pageNo}")
-    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
-                                @RequestParam("sortField") String sortField,
-                                @RequestParam("sortDir") String sortDir,
-                                Model model) {
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir, Model model) {
         int pageSize = 5;
 
         Page<Employee> page = employeeService.findPaginated(pageNo, pageSize, sortField, sortDir);
