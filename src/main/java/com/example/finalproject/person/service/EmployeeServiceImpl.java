@@ -23,23 +23,23 @@ import java.util.stream.Collectors;
 public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
     @Override
-    public Collection<UserResponse> getAllUsers(){
+    public Collection<UserResponse> getAllEmployees(){
         List<Employee> employees = employeeRepository.findAll();
         return employees.stream().map(UserMapper::mapToUserDto).collect(Collectors.toList());
     }
     @Override
-    public void savePerson(Employee employee) {
+    public void saveEmployee(Employee employee) {
         this.employeeRepository.save(employee);
     }
     @Override
-    public Employee getUserById(Long userId) throws UserNotFoundException {
+    public Employee getEmployeeById(Long userId) throws UserNotFoundException {
         Optional<Employee> optionalUser = employeeRepository.findById(userId);
         Employee employee = optionalUser.orElseThrow(()->new UserNotFoundException("Пользователь не найден"));
         return employee;
     }
 
     @Override
-    public void deleteUserById(Long userId) {
+    public void deleteEmployeeById(Long userId) {
         this.employeeRepository.deleteById(userId);
     }
 
