@@ -34,7 +34,7 @@ public class EmployeeController {
 
     @PostMapping("/saveEmployee")
     public String saveEmployee(@ModelAttribute("employee") Employee employee) {
-        employeeService.savePerson(employee);
+        employeeService.saveEmployee(employee);
 
         return "redirect:/employees/all";
 
@@ -42,14 +42,14 @@ public class EmployeeController {
 
     @GetMapping("/showFormForUpdate/{id}")
     public String showFormForUpdate(@PathVariable(value = "id") Long id, Model model) throws UserNotFoundException {
-        Employee employee = employeeService.getUserById(id);
+        Employee employee = employeeService.getEmployeeById(id);
         model.addAttribute("employee", employee);
         return "update_person";
     }
 
     @GetMapping("/deleteEmployee/{id}")
     public String deletePerson(@PathVariable(value = "id") Long id) {
-        this.employeeService.deleteUserById(id);
+        this.employeeService.deleteEmployeeById(id);
 
         return "redirect:/employees/all";
     }

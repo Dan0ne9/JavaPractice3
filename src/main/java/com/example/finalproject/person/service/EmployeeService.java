@@ -9,10 +9,10 @@ import java.util.Collection;
 
 
 public interface EmployeeService {
-    Collection<UserResponse> getAllUsers();
-    void savePerson(Employee employee);
-    Employee getUserById(Long userId) throws UserNotFoundException;
-    void deleteUserById(Long userId);
+    Collection<UserResponse> getAllEmployees();
+    void saveEmployee(Employee employee);
+    Employee getEmployeeById(Long userId) throws UserNotFoundException;
+    void deleteEmployeeById(Long userId);
 
     Page<Employee> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 
