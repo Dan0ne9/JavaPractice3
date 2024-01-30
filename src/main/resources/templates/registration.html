@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Registration</title>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -21,7 +21,7 @@
                     class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" th:href="@{/}">Employee Management System</a>
+            <a class="navbar-brand" href="#" th:href="@{/}">Система управления персоналом</a>
         </div>
     </div>
 </nav>
@@ -35,42 +35,41 @@
 
             <!-- success message -->
             <div th:if="${param.success}">
-                <div class="alert alert-info">You've successfully registered
-                    to our awesome app!
+                <div class="alert alert-info">Вы успешно зарегестрированы!
                 </div>
             </div>
 
-            <h1>Registration</h1>
+            <h1>Регистрация</h1>
 
             <form th:action="@{/registration}" method="post" th:object="${userP}">
                 <div class="form-group">
-                    <label class="control-label" for="firstName"> First Name </label>
+                    <label class="control-label" for="firstName"> Имя </label>
                     <input id="firstName" class="form-control" th:field="*{firstName}"
                            required autofocus="autofocus"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="lastName"> Last Name </label> <input
+                    <label class="control-label" for="lastName"> Фамилия </label> <input
                         id="lastName" class="form-control" th:field="*{lastName}"
                         required autofocus="autofocus"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="email"> Email </label> <input
+                    <label class="control-label" for="email"> Почта </label> <input
                         id="email" class="form-control" th:field="*{email}" required
                         autofocus="autofocus"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="password"> Password </label> <input
+                    <label class="control-label" for="password"> Пароль </label> <input
                         id="password" class="form-control" type="password"
                         th:field="*{password}" required autofocus="autofocus"/>
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">Register</button>
-                    <span>Already registered? <a href="/" th:href="@{/login}">Login
-								here</a></span>
+                    <button type="submit" class="btn btn-success">Регистрация</button>
+                    <span>Вы уже зарегестрированы? <a href="/" th:href="@{/login}">Вход
+                    </a></span>
                 </div>
             </form>
         </div>

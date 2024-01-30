@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Employee Management System</title>
+    <meta charset="UTF-8">
+    <title>Система управления персоналом</title>
 
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -23,10 +23,10 @@
                     class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" th:href="@{/employees/all}">Employee Management System</a>
+            <a class="navbar-brand" href="#" th:href="@{/employees/all}">Система управления персоналом</a>
         </div>
         <ul class="nav navbar-nav">
-            <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+            <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Выход из системы</a></li>
         </ul>
     </div>
 </nav>
@@ -35,26 +35,26 @@
 <br>
 
 <div class="container my-2">
-    <h1>Employees List</h1>
+    <h1>Список персонала</h1>
 
-    <a th:href="@{/employees/showNewEmployeeForm}" class="btn btn-primary btn-sm mb-3"> Add Employee </a>
+    <a th:href="@{/employees/showNewEmployeeForm}" class="btn btn-primary btn-sm mb-3"> Добавить человека </a>
 
     <table border="1" class="table table-striped table-responsive-md">
         <thead>
         <tr>
             <th>
                 <a th:href="@{'/employees/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
-                    Employee First Name</a>
+                    Имя</a>
             </th>
             <th>
                 <a th:href="@{'/employees/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
-                    Employee Last Name</a>
+                    Фамилия</a>
             </th>
             <th>
                 <a th:href="@{'/employees/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
-                    Employee Email</a>
+                    Электронная почта</a>
             </th>
-            <th> Actions</th>
+            <th> Действия</th>
         </tr>
         </thead>
         <tbody>
@@ -62,8 +62,8 @@
             <td th:text="${employee.firstName}"></td>
             <td th:text="${employee.lastName}"></td>
             <td th:text="${employee.email}"></td>
-            <td><a th:href="@{/employees/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-primary">Update</a>
-                <a th:href="@{/employees/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a>
+            <td><a th:href="@{/employees/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-primary">Обновить</a>
+                <a th:href="@{/employees/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger">Удалить</a>
             </td>
         </tr>
         </tbody>
